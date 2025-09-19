@@ -45,12 +45,20 @@ class AIPlayer:
         # 加载训练好的神经网络
         self.network = create_chess_net(NetworkConfig.to_dict())
         if os.path.exists(model_path):
-            checkpoint = torch.load(model_path, map_location=device)
-            if 'model_state_dict' in checkpoint:
-                self.network.load_state_dict(checkpoint['model_state_dict'])
-            else:
-                self.network.load_state_dict(checkpoint)
-            print(f"✅ 成功加载AI模型: {model_path}")
+            try:
+                checkpoint = torch.load(model_path, map_location=device)
+                # 处理不同格式的检查点文件
+                if 'model_state_dict' in checkpoint:
+                    self.network.load_state_dict(checkpoint['model_state_dict'])
+                elif 'network_state_dict' in checkpoint:
+                    self.network.load_state_dict(checkpoint['network_state_dict'])
+                else:
+                    # 如果是直接保存的state_dict，尝试加载
+                    self.network.load_state_dict(checkpoint)
+                print(f"✅ 成功加载AI模型: {model_path}")
+            except Exception as e:
+                print(f"⚠️  模型加载失败: {e}")
+                print("🔄 使用随机初始化的网络")
         else:
             print(f"⚠️  模型文件不存在: {model_path}，使用随机初始化的网络")
         
@@ -101,11 +109,14 @@ class HumanVsAI:
     def __init__(self):
         """初始化游戏"""
         self.board = Board()
-        self.rule = Rule(self.board)
-        self.game_state = GameState(self.board, self.rule)
+        self.rule = Rule(self.board)  # Rule需要board参数
+        self.game_state = GameState()  # GameState不需要参数
         self.ai_player = None
         self.human_player = None
         self.ai_side = None
+        
+        # 设置玩家
+        self.game_state.setup_players("人类玩家", "AI玩家")
     
     def display_board(self):
         """显示棋盘"""
