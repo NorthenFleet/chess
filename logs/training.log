@@ -1,0 +1,417 @@
+2025-09-20 00:36:54,596 - INFO - 开始训练准备
+2025-09-20 00:36:54,596 - ERROR - 训练错误: ChessNet.__init__() got an unexpected keyword argument 'dropout_rate'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 161, in main
+    trainer = ChessTrainer(
+              ^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 117, in __init__
+    self.network = create_chess_net(self.network_config).to(self.device)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 397, in create_chess_net
+    return ChessNet(**default_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: ChessNet.__init__() got an unexpected keyword argument 'dropout_rate'
+2025-09-20 00:37:33,995 - INFO - 开始训练准备
+2025-09-20 00:37:35,642 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:37:35,642 - ERROR - 训练错误: 'GameState' object has no attribute 'is_game_over'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 472, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 378, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 228, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 163, in self_play_game
+    while not game_state.is_game_over() and move_count < self.training_config['max_game_length']:
+              ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'GameState' object has no attribute 'is_game_over'. Did you mean: 'game_over'?
+2025-09-20 00:38:10,132 - INFO - 开始训练准备
+2025-09-20 00:38:10,511 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:38:10,511 - ERROR - 训练错误: 'GameState' object has no attribute 'copy'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 472, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 378, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 228, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 169, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 212, in search
+    self.root = MCTSNode(game_state=game_state.copy())
+                                    ^^^^^^^^^^^^^^^
+AttributeError: 'GameState' object has no attribute 'copy'
+2025-09-20 00:38:39,228 - INFO - 开始训练准备
+2025-09-20 00:38:39,709 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:38:39,709 - ERROR - 训练错误: 'GameState' object has no attribute 'is_game_over'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 472, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 378, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 228, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 169, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 253, in _simulate
+    if game_state.is_game_over():
+       ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'GameState' object has no attribute 'is_game_over'. Did you mean: 'game_over'?
+2025-09-20 00:38:53,191 - INFO - 开始训练准备
+2025-09-20 00:38:53,542 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:38:53,542 - ERROR - 训练错误: 'GameState' object has no attribute 'board'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 472, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 378, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 228, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 169, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 283, in _evaluate_node
+    game_state.board, game_state.current_player
+    ^^^^^^^^^^^^^^^^
+AttributeError: 'GameState' object has no attribute 'board'
+2025-09-20 00:40:02,762 - INFO - 开始训练准备
+2025-09-20 00:40:03,160 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:40:03,162 - ERROR - 训练错误: 横坐标 x 必须在 0-8 范围内，当前值: 9
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 472, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 378, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 228, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 169, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 282, in _evaluate_node
+    board_encoded = self.board_encoder.encode_board(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 68, in encode_board
+    pos = Position(row, col)
+          ^^^^^^^^^^^^^^^^^^
+  File "<string>", line 5, in __init__
+  File "/Users/sunyi/WorkSpace/chess/board/board.py", line 16, in __post_init__
+    raise ValueError(f"横坐标 x 必须在 0-8 范围内，当前值: {self.x}")
+ValueError: 横坐标 x 必须在 0-8 范围内，当前值: 9
+2025-09-20 00:40:26,223 - INFO - 开始训练准备
+2025-09-20 00:40:26,575 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:40:26,576 - ERROR - 训练错误: 'NoneType' object has no attribute 'side'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 472, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 378, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 228, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 169, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 287, in _evaluate_node
+    valid_moves = game_state.get_valid_moves()
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/core/game_state.py", line 159, in get_valid_moves
+    return self.rule.get_all_valid_moves(self.current_player.side)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'side'
+2025-09-20 00:45:59,981 - INFO - 开始训练准备
+2025-09-20 00:46:00,487 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:46:00,490 - ERROR - 训练错误: cannot unpack non-iterable Position object
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 288, in _evaluate_node
+    valid_actions = self.action_encoder.encode_move_list(valid_moves)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 213, in encode_move_list
+    return [self.encode_action(from_pos, to_pos) for from_pos, to_pos in moves]
+                                                     ^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable Position object
+2025-09-20 00:46:30,917 - INFO - 开始训练准备
+2025-09-20 00:46:31,263 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:46:31,266 - ERROR - 训练错误: 'Position' object has no attribute 'row'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 288, in _evaluate_node
+    valid_actions = self.action_encoder.encode_move_list(valid_moves)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 213, in encode_move_list
+    return [self.encode_action(from_pos, to_pos) for from_pos, to_pos in moves]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 161, in encode_action
+    from_idx = from_pos.row * 9 + from_pos.col  # 0-89
+               ^^^^^^^^^^^^
+AttributeError: 'Position' object has no attribute 'row'
+2025-09-20 00:47:29,613 - INFO - 开始训练准备
+2025-09-20 00:47:29,959 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:47:29,961 - ERROR - 训练错误: 动作索引 2259 超出范围 [0, 2086)
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 288, in _evaluate_node
+    valid_actions = self.action_encoder.encode_move_list(valid_moves)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 215, in encode_move_list
+    return [self.encode_action(from_pos, to_pos) for from_pos, to_pos in moves]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 173, in encode_action
+    raise ValueError(f"动作索引 {action_idx} 超出范围 [0, {self.action_space_size})")
+ValueError: 动作索引 2259 超出范围 [0, 2086)
+2025-09-20 00:48:09,010 - INFO - 开始训练准备
+2025-09-20 00:48:09,386 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:48:09,399 - ERROR - 训练错误: The size of tensor a (2086) must match the size of tensor b (8100) at non-singleton dimension 1
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 292, in _evaluate_node
+    policy_probs, value = self.neural_network.predict(board_encoded, action_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 351, in predict
+    policy_probs, value = self.forward(x, mask)
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 317, in forward
+    policy_logits = policy_logits * action_mask + (1 - action_mask) * (-1e8)
+                    ~~~~~~~~~~~~~~^~~~~~~~~~~~~
+RuntimeError: The size of tensor a (2086) must match the size of tensor b (8100) at non-singleton dimension 1
+2025-09-20 00:48:44,573 - INFO - 开始训练准备
+2025-09-20 00:48:44,856 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:48:44,862 - ERROR - 训练错误: The size of tensor a (2086) must match the size of tensor b (8100) at non-singleton dimension 1
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    value = self._evaluate_node(node)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 292, in _evaluate_node
+    policy_probs, value = self.neural_network.predict(board_encoded, action_mask)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 349, in predict
+    policy_probs, value = self.forward(x, mask)
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 315, in forward
+    policy_logits = policy_logits * action_mask + (1 - action_mask) * (-1e8)
+                    ~~~~~~~~~~~~~~^~~~~~~~~~~~~
+RuntimeError: The size of tensor a (2086) must match the size of tensor b (8100) at non-singleton dimension 1
+2025-09-20 00:50:24,815 - INFO - 开始训练准备
+2025-09-20 00:50:25,094 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:50:25,099 - ERROR - 训练错误: 'Rule' object has no attribute 'make_move'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 343, in get_training_data
+    action_probs, root_value = self.search(game_state)
+                               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 216, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 240, in _simulate
+    success = node.game_state.make_move(from_pos, to_pos)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/core/game_state.py", line 138, in make_move
+    result = self.rule.make_move(from_pos, to_pos, self.current_player.side)
+             ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Rule' object has no attribute 'make_move'
+2025-09-20 00:56:00,573 - INFO - 开始训练准备
+2025-09-20 00:56:00,992 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:56:01,320 - ERROR - 训练错误: max() iterable argument is empty
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 182, in main
+    trainer.train(args.iterations, PATH_CONFIG['checkpoint_dir'])
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 474, in train
+    stats = self.train_iteration()
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 392, in train_iteration
+    eval_stats = self.evaluate_network(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 340, in evaluate_network
+    best_move = self.mcts.get_best_action(game_state)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 324, in get_best_action
+    action_probs, _ = self.search(game_state)
+                      ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 219, in search
+    action_probs = self.root.get_action_probs(self.temperature)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 150, in get_action_probs
+    best_action = max(self.children.keys(),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: max() iterable argument is empty
+2025-09-20 00:56:37,125 - INFO - 开始训练准备
+2025-09-20 00:56:37,393 - INFO - 开始训练 - 总迭代数: 5
+2025-09-20 00:56:41,811 - INFO - 训练完成 - 总用时: 4.4秒

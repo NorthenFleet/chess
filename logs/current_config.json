@@ -1,0 +1,124 @@
+{
+  "system": {
+    "device": "cpu",
+    "checkpoint_dir": "/Users/sunyi/WorkSpace/chess/checkpoints",
+    "data_dir": "/Users/sunyi/WorkSpace/chess/training_data",
+    "model_dir": "/Users/sunyi/WorkSpace/chess/models",
+    "log_dir": "/Users/sunyi/WorkSpace/chess/logs"
+  },
+  "network": {
+    "input_channels": 14,
+    "hidden_channels": 128,
+    "num_residual_blocks": 8,
+    "action_space_size": 8100,
+    "use_attention": true,
+    "num_attention_heads": 8,
+    "attention_dropout": 0.1,
+    "dropout_rate": 0.1,
+    "batch_norm": true,
+    "activation": "relu"
+  },
+  "mcts": {
+    "num_simulations": 800,
+    "c_puct": 1.4,
+    "temperature": 1.0,
+    "add_noise": true,
+    "noise_alpha": 0.3,
+    "noise_epsilon": 0.25,
+    "virtual_loss": 3,
+    "max_search_depth": 100
+  },
+  "training": {
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "epochs_per_iteration": 10,
+    "weight_decay": 0.0001,
+    "use_lr_scheduler": true,
+    "lr_scheduler_type": "step",
+    "lr_scheduler_step": 50,
+    "lr_scheduler_gamma": 0.9,
+    "optimizer": "adam",
+    "momentum": 0.9,
+    "beta1": 0.9,
+    "beta2": 0.999,
+    "policy_loss_weight": 1.0,
+    "value_loss_weight": 1.0,
+    "gradient_clipping": true,
+    "max_grad_norm": 1.0
+  },
+  "self_play": {
+    "games_per_iteration": 10,
+    "max_game_length": 200,
+    "draw_threshold": 100,
+    "repetition_threshold": 3,
+    "num_workers": 1
+  },
+  "evaluation": {
+    "eval_games": 20,
+    "eval_interval": 5,
+    "eval_mcts_simulations": 400,
+    "eval_temperature": 0.1,
+    "win_rate_threshold": 0.55
+  },
+  "data": {
+    "max_examples": 50000,
+    "min_examples": 1000,
+    "data_cleanup_interval": 100,
+    "keep_recent_examples": 30000,
+    "use_data_augmentation": false,
+    "augmentation_ratio": 0.2,
+    "save_training_data": true,
+    "data_save_interval": 50
+  },
+  "logging": {
+    "log_level": "INFO",
+    "log_file": "training.log",
+    "print_interval": 10,
+    "verbose": true,
+    "use_tensorboard": false,
+    "tensorboard_dir": "runs",
+    "monitor_gpu": true,
+    "monitor_memory": true
+  },
+  "checkpoint": {
+    "save_interval": 10,
+    "max_checkpoints": 5,
+    "save_best_model": true,
+    "best_model_metric": "win_rate",
+    "checkpoint_prefix": "checkpoint",
+    "best_model_name": "best_model.pth",
+    "final_model_name": "final_model.pth"
+  },
+  "phases": {
+    "phase_1": {
+      "name": "基础训练阶段",
+      "iterations": 50,
+      "mcts_simulations": 400,
+      "self_play_games": 5,
+      "temperature": 1.2,
+      "learning_rate": 0.001,
+      "batch_size": 16,
+      "description": "建立基础棋局理解能力，学习基本走法和规则"
+    },
+    "phase_2": {
+      "name": "强化训练阶段",
+      "iterations": 100,
+      "mcts_simulations": 800,
+      "self_play_games": 10,
+      "temperature": 1.0,
+      "learning_rate": 0.0005,
+      "batch_size": 32,
+      "description": "提升策略质量和搜索深度，学习复杂战术"
+    },
+    "phase_3": {
+      "name": "精英训练阶段",
+      "iterations": 50,
+      "mcts_simulations": 1200,
+      "self_play_games": 15,
+      "temperature": 0.8,
+      "learning_rate": 0.0001,
+      "batch_size": 64,
+      "description": "达到专业水平，精细调优策略和战术理解"
+    }
+  }
+}
