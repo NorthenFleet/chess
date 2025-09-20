@@ -117,6 +117,9 @@ class HumanVsAI:
         
         # 设置玩家
         self.game_state.setup_players("人类玩家", "AI玩家")
+        
+        # 初始化棋盘
+        self.rule.initialize_board()
     
     def display_board(self):
         """显示棋盘"""
@@ -127,8 +130,8 @@ class HumanVsAI:
         for row in range(10):
             print(f"{row}|", end="")
             for col in range(9):
-                pos = Position(row, col)
-                piece = self.board.get_piece(pos)
+                pos = Position(col, row)  # 修正参数顺序：x(col)在前，y(row)在后
+                piece = self.board.get_piece_at(pos)  # 使用正确的方法名
                 if piece:
                     # 根据棋子类型和颜色显示不同的符号
                     piece_char = self._get_piece_display(piece)
@@ -141,24 +144,34 @@ class HumanVsAI:
     
     def _get_piece_display(self, piece: Piece) -> str:
         """获取棋子的显示字符"""
-        piece_chars = {
-            PieceType.KING: "帅" if piece.color == "red" else "将",
-            PieceType.ADVISOR: "仕" if piece.color == "red" else "士", 
-            PieceType.ELEPHANT: "相" if piece.color == "red" else "象",
-            PieceType.HORSE: "马",
-            PieceType.CHARIOT: "车",
-            PieceType.CANNON: "炮",
-            PieceType.SOLDIER: "兵" if piece.color == "red" else "卒"
+        piece_symbols = {
+            PieceType.GENERAL: "帅" if piece.side == "red" else "将",
+            PieceType.ADVISOR: "仕" if piece.side == "red" else "士",
+            PieceType.ELEPHANT: "相" if piece.side == "red" else "象",
+            PieceType.HORSE: "马" if piece.side == "red" else "馬",
+            PieceType.CHARIOT: "车" if piece.side == "red" else "車",
+            PieceType.CANNON: "炮" if piece.side == "red" else "砲",
+            PieceType.SOLDIER: "兵" if piece.side == "red" else "卒",
         }
-        return piece_chars.get(piece.piece_type, "?")
+        return piece_symbols.get(piece.type, "?")
     
     def parse_position(self, pos_str: str) -> Optional[Position]:
-        """解析位置字符串"""
+        """解析位置字符串，支持逗号分隔格式（如'9,0'）"""
         try:
-            if len(pos_str) != 2:
-                return None
-            row = int(pos_str[0])
-            col = int(pos_str[1])
+            # 支持逗号分隔格式
+            if ',' in pos_str:
+                parts = pos_str.split(',')
+                if len(parts) != 2:
+                    return None
+                row = int(parts[0].strip())
+                col = int(parts[1].strip())
+            else:
+                # 兼容原有格式（如'90'）
+                if len(pos_str) != 2:
+                    return None
+                row = int(pos_str[0])
+                col = int(pos_str[1])
+            
             if 0 <= row <= 9 and 0 <= col <= 8:
                 return Position(row, col)
         except ValueError:
@@ -169,21 +182,21 @@ class HumanVsAI:
         """获取人类玩家的移动"""
         while True:
             try:
-                move_input = input("\n请输入您的移动 (格式: 起始位置 目标位置，如 '90 80'，输入 'q' 退出): ").strip()
+                move_input = input("\n请输入您的移动 (格式: 起始位置 目标位置，如 '9,0 8,0'，输入 'q' 退出): ").strip()
                 
                 if move_input.lower() == 'q':
                     return None, None
                 
                 parts = move_input.split()
                 if len(parts) != 2:
-                    print("❌ 输入格式错误！请使用格式: 起始位置 目标位置 (如 '90 80')")
+                    print("❌ 输入格式错误！请使用格式: 起始位置 目标位置 (如 '9,0 8,0')")
                     continue
                 
                 from_pos = self.parse_position(parts[0])
                 to_pos = self.parse_position(parts[1])
                 
                 if from_pos is None or to_pos is None:
-                    print("❌ 位置格式错误！行号0-9，列号0-8")
+                    print("❌ 位置格式错误！请使用格式 '行,列' (行号0-9，列号0-8)")
                     continue
                 
                 return from_pos, to_pos
@@ -211,8 +224,8 @@ class HumanVsAI:
         """设置游戏"""
         print("🎮 欢迎来到中国象棋人机对抗模式！")
         print("📋 游戏规则:")
-        print("   - 位置格式: 行号(0-9) + 列号(0-8)，如 '90' 表示第9行第0列")
-        print("   - 移动格式: 起始位置 + 空格 + 目标位置，如 '90 80'")
+        print("   - 位置格式: 行号,列号 (如 '9,0' 表示第9行第0列)")
+        print("   - 移动格式: 起始位置 + 空格 + 目标位置，如 '9,0 8,0'")
         print("   - 输入 'q' 可以随时退出游戏")
         
         # 让玩家选择执棋方
@@ -236,10 +249,10 @@ class HumanVsAI:
             self.display_board()
             
             current_player = self.game_state.current_player
-            print(f"\n当前轮到: {'红方' if current_player == Player.RED else '黑方'}")
+            print(f"\n当前轮到: {'红方' if current_player.side == 'red' else '黑方'}")
             
-            if (current_player == Player.RED and self.human_player == 'red') or \
-               (current_player == Player.BLACK and self.human_player == 'black'):
+            if (current_player.side == 'red' and self.human_player == 'red') or \
+               (current_player.side == 'black' and self.human_player == 'black'):
                 # 人类玩家回合
                 print("👤 您的回合")
                 from_pos, to_pos = self.get_human_move()
@@ -278,13 +291,13 @@ class HumanVsAI:
         print("\n" + "="*50)
         print("🏁 游戏结束！")
         
-        if self.game_state.winner == Player.RED:
+        if self.game_state.winner and self.game_state.winner.side == 'red':
             winner = "红方"
             if self.human_player == 'red':
                 print("🎉 恭喜您获胜！")
             else:
                 print("😔 AI获胜，继续努力！")
-        elif self.game_state.winner == Player.BLACK:
+        elif self.game_state.winner and self.game_state.winner.side == 'black':
             winner = "黑方"
             if self.human_player == 'black':
                 print("🎉 恭喜您获胜！")

@@ -175,6 +175,10 @@ class GameState:
         """获取获胜者"""
         return self.winner.side if self.winner else None
     
+    def is_game_over(self) -> bool:
+        """检查游戏是否结束"""
+        return self.game_over
+    
     def register_event_listener(self, event_type: EventType, callback: Callable) -> None:
         """注册事件监听器"""
         if event_type in self.event_listeners:
