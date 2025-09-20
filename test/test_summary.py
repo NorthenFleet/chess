@@ -12,7 +12,7 @@ def run_test_module(module_name):
     """运行指定的测试模块并返回结果"""
     try:
         result = subprocess.run(
-            [sys.executable, '-m', f'chess.{module_name}'],
+            [sys.executable, f'test/{module_name}.py'],
             capture_output=True,
             text=True,
             cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

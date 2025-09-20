@@ -1,8 +1,12 @@
-# chess/debug_move.py
+# chess/test/debug_move.py
 
-from chess.board.board import Board, Position
-from chess.piece.pieces import Soldier
-from chess.rule.rule import Rule
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from board.board import Board, Position
+from piece.pieces import Soldier
+from rule.rule import Rule
 
 # 创建棋盘和规则
 board = Board()

@@ -1,11 +1,15 @@
-# chess/test_chess.py
+# chess/test/test_chess.py
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import unittest
-from chess.board.board import Board, Position
-from chess.piece.piece import PieceType
-from chess.piece.pieces import General, Advisor, Elephant, Horse, Chariot, Cannon, Soldier
-from chess.rule.rule import Rule, MoveResult
-from chess.core.game_state import GameState, Player
+from board.board import Board, Position
+from piece.piece import PieceType
+from piece.pieces import General, Advisor, Elephant, Horse, Chariot, Cannon, Soldier
+from rule.rule import Rule, MoveResult
+from core.game_state import GameState, Player
 
 
 class TestChineseChess(unittest.TestCase):

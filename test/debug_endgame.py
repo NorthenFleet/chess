@@ -1,8 +1,12 @@
-# chess/debug_endgame.py
+# chess/test/debug_endgame.py
 
-from chess.board.board import Board, Position
-from chess.piece.pieces import General, Advisor, Elephant, Horse, Chariot, Cannon, Soldier
-from chess.rule.rule import Rule, MoveResult
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from board.board import Board, Position
+from piece.pieces import General, Advisor, Elephant, Horse, Chariot, Cannon, Soldier
+from rule.rule import Rule, MoveResult
 
 
 def debug_checkmate():
