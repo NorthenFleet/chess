@@ -415,3 +415,57 @@ ValueError: max() iterable argument is empty
 2025-09-20 00:56:37,125 - INFO - 开始训练准备
 2025-09-20 00:56:37,393 - INFO - 开始训练 - 总迭代数: 5
 2025-09-20 00:56:41,811 - INFO - 训练完成 - 总用时: 4.4秒
+2025-09-21 01:04:55,652 - INFO - 开始训练准备
+2025-09-21 01:04:56,262 - INFO - 开始训练 - 总迭代数: 1000
+2025-09-21 01:04:56,262 - INFO - 开始 基础训练阶段 - 50 轮迭代
+2025-09-21 01:04:56,492 - ERROR - 训练错误: 纵坐标 y 必须在 0-9 范围内，当前值: 10
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 185, in main
+    train_with_phases(trainer, args.iterations, logger)
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 101, in train_with_phases
+    stats = trainer.train_iteration()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 352, in get_training_data
+    action_probs, root_value = self.search(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 225, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 245, in _simulate
+    from_pos, to_pos = self.action_encoder.decode_action(action_idx)
+  File "/Users/sunyi/WorkSpace/chess/ai/encoder.py", line 198, in decode_action
+    return Position(from_x, from_y), Position(to_x, to_y)
+  File "<string>", line 5, in __init__
+  File "/Users/sunyi/WorkSpace/chess/board/board.py", line 18, in __post_init__
+    raise ValueError(f"纵坐标 y 必须在 0-9 范围内，当前值: {self.y}")
+ValueError: 纵坐标 y 必须在 0-9 范围内，当前值: 10
+2025-09-21 01:05:56,168 - INFO - 开始训练准备
+2025-09-21 01:05:56,654 - INFO - 开始训练 - 总迭代数: 1000
+2025-09-21 01:05:56,654 - INFO - 开始 基础训练阶段 - 50 轮迭代
+2025-09-21 01:10:29,515 - ERROR - 训练错误: 'str' object has no attribute 'side'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 185, in main
+    train_with_phases(trainer, args.iterations, logger)
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 101, in train_with_phases
+    stats = trainer.train_iteration()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 352, in get_training_data
+    action_probs, root_value = self.search(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 225, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    winner = game_state.get_winner()
+  File "/Users/sunyi/WorkSpace/chess/core/game_state.py", line 176, in get_winner
+    return self.winner.side if self.winner else None
+AttributeError: 'str' object has no attribute 'side'
+2025-09-25 22:49:21,743 - INFO - 开始训练准备
+2025-09-25 22:49:22,608 - INFO - 开始训练 - 总迭代数: 200
+2025-09-25 22:49:22,608 - INFO - 开始 基础训练阶段 - 50 轮迭代

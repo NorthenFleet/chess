@@ -30,7 +30,7 @@ from config import NetworkConfig, MCTSConfig
 class AIPlayer:
     """AI玩家类"""
     
-    def __init__(self, model_path: str = "checkpoints/final_model.pth", device: str = "cpu"):
+    def __init__(self, model_path: str = "ai/checkpoints/final_model.pth", device: str = "cpu"):
         """
         初始化AI玩家
         

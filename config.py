@@ -36,7 +36,7 @@ class SystemConfig:
     
     # 文件路径配置
     PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-    CHECKPOINT_DIR = os.path.join(PROJECT_ROOT, 'checkpoints')
+    CHECKPOINT_DIR = os.path.join(PROJECT_ROOT, 'ai', 'checkpoints')
     DATA_DIR = os.path.join(PROJECT_ROOT, 'training_data')
     MODEL_DIR = os.path.join(PROJECT_ROOT, 'models')
     LOG_DIR = os.path.join(PROJECT_ROOT, 'logs')

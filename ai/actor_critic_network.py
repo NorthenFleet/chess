@@ -191,7 +191,7 @@ class ActorNetwork(nn.Module):
         policy_out = F.relu(policy_out)
         
         # 展平并通过全连接层
-        policy_out = policy_out.view(policy_out.size(0), -1)
+        policy_out = policy_out.reshape(policy_out.size(0), -1)
         policy_logits = self.policy_fc(policy_out)
         
         # 应用动作掩码
@@ -295,7 +295,7 @@ class CriticNetwork(nn.Module):
         value_out = F.relu(value_out)
         
         # 展平并通过全连接层
-        value_out = value_out.view(value_out.size(0), -1)
+        value_out = value_out.reshape(value_out.size(0), -1)
         value_out = self.value_fc1(value_out)
         value_out = F.relu(value_out)
         value = self.value_fc2(value_out)

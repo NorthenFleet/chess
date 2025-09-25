@@ -182,18 +182,19 @@ class ActionEncoder:
         if not (0 <= action_idx < self.action_space_size):
             raise ValueError(f"动作索引 {action_idx} 超出范围 [0, {self.action_space_size})")
         
-        # 计算起始位置索引
-        from_idx = action_idx // 89
-        to_offset = action_idx % 89
+        # 解码动作：action_idx = from_idx * 90 + to_idx
+        from_idx = action_idx // 90
+        to_idx = action_idx % 90
         
-        # 计算目标位置索引（考虑跳过自移动）
-        to_idx = to_offset if to_offset < from_idx else to_offset + 1
+        # 将一维索引转换为二维位置（中国象棋：10行9列）
+        from_y = from_idx // 9  # 行号 0-9
+        from_x = from_idx % 9   # 列号 0-8
+        to_y = to_idx // 9      # 行号 0-9  
+        to_x = to_idx % 9       # 列号 0-8
         
-        # 将一维索引转换为二维位置
-        from_y = from_idx // 9
-        from_x = from_idx % 9
-        to_y = to_idx // 9
-        to_x = to_idx % 9
+        # 确保坐标在有效范围内
+        if not (0 <= from_x <= 8 and 0 <= from_y <= 9 and 0 <= to_x <= 8 and 0 <= to_y <= 9):
+            raise ValueError(f"解码后的坐标超出范围: from({from_x},{from_y}) to({to_x},{to_y})")
         
         return Position(from_x, from_y), Position(to_x, to_y)
     

@@ -92,7 +92,7 @@ LOGGING_CONFIG = {
 
 # 文件路径配置
 PATH_CONFIG = {
-    'checkpoint_dir': 'checkpoints',
+    'checkpoint_dir': 'ai/checkpoints',
     'data_dir': 'training_data',
     'model_dir': 'models',
     'log_dir': 'logs',
