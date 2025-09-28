@@ -222,14 +222,14 @@ class Cannon(Piece):
         """获取炮/砲的合法移动位置"""
         valid_moves = []
         
-        # 炮的移动规则：横向或纵向移动任意距离
-        # 吃子时需要一个炮架（中间必须有且仅有一个棋子）
+        # 炮的移动规则：
+        # 1. 移动时：横向或纵向移动任意距离，路径必须为空
+        # 2. 吃子时：必须隔一个棋子（炮架）才能吃对方棋子
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # 上、右、下、左
         
         for dx, dy in directions:
-            # 沿着方向移动，记录炮架
             step = 1
-            has_platform = False
+            platform_found = False
             
             while True:
                 new_x, new_y = position.x + dx * step, position.y + dy * step
@@ -239,31 +239,29 @@ class Cannon(Piece):
                     break
                     
                 new_pos = Position(new_x, new_y)
-                
-                # 检查目标位置是否有棋子
                 piece_at_target = board.get_piece_at(new_pos)
                 
-                if not has_platform:
-                    # 还没有炮架
+                if not platform_found:
+                    # 还没有找到炮架
                     if not piece_at_target:
-                        # 空位，可以移动
+                        # 空位，可以移动到这里
                         valid_moves.append(new_pos)
-                        step += 1
                     else:
-                        # 遇到棋子，成为炮架
-                        has_platform = True
-                        step += 1
+                        # 遇到棋子，这个棋子成为炮架
+                        # 炮不能移动到炮架位置，但可以继续寻找吃子目标
+                        platform_found = True
                 else:
-                    # 已有炮架
+                    # 已经有炮架了
                     if piece_at_target:
-                        # 遇到第二个棋子
+                        # 遇到第二个棋子，检查是否可以吃
                         if piece_at_target.side != self.side:
                             # 对方棋子，可以吃
                             valid_moves.append(new_pos)
+                        # 无论是否可以吃，都不能继续前进
                         break
-                    else:
-                        # 空位，继续寻找可能的目标
-                        step += 1
+                    # 如果是空位，继续寻找目标棋子
+                
+                step += 1
         
         return valid_moves
 

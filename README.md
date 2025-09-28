@@ -37,36 +37,41 @@ chess/
 
 ## 快速开始
 
-### 1. 安装依赖
-
+### 安装依赖
 ```bash
+# 安装基础依赖
 pip install -r config/requirements_ai.txt
+
+# 安装PyQt5（用于图形界面）
+pip install PyQt5
 ```
 
-### 2. 启动游戏
+### 启动游戏
 
+#### 1. PyQt图形界面（推荐）
 ```bash
-# 启动图形界面
-python scripts/chess_gui.py
+python scripts/chess_pyqt_gui.py
+```
+现代化的PyQt5图形界面，支持：
+- 美观的棋盘显示
+- 鼠标点击操作
+- 实时游戏状态显示
+- 移动历史记录
+- 游戏控制面板
 
-# 启动人机对战
-python scripts/human_vs_ai.py
-
-# 使用游戏启动器
+#### 2. 传统命令行界面
+```bash
 python scripts/start_chess.py
 ```
 
-### 3. 训练AI
-
+#### 3. 人机对战
 ```bash
-# 开始训练
-python scripts/start_training.py
+python scripts/human_vs_ai.py
+```
 
-# 测试模式训练
-python scripts/start_training.py --test
-
-# 从检查点恢复训练
-python scripts/start_training.py --resume path/to/checkpoint
+#### 4. 训练AI
+```bash
+python scripts/start_training.py --help
 ```
 
 ## 主要功能
