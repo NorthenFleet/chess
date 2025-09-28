@@ -22,7 +22,7 @@ from ai.algorithms.mcts import MCTS
 from board.board import Board, Position
 from rule.rule import Rule
 from core.game_state import GameState
-from train_config import NETWORK_CONFIG, DEVICE
+from config.train_config import NETWORK_CONFIG, DEVICE
 
 class NetworkTester:
     """神经网络测试器"""

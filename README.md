@@ -1,58 +1,97 @@
-# 中国象棋
+# 中国象棋AI项目
 
-这是一个基于Python实现的中国象棋游戏，支持命令行界面的双人对战。
+这是一个基于深度学习的中国象棋AI项目，使用PyTorch实现，包含完整的游戏引擎、AI训练系统和用户界面。
 
 ## 项目结构
 
 ```
 chess/
-├── core/                # 核心模块
-│   ├── __init__.py
-│   └── game_state.py    # 游戏状态管理
-├── board/               # 棋盘模块
-│   ├── __init__.py
-│   └── board.py         # 棋盘和位置类
-├── piece/               # 棋子模块
-│   ├── __init__.py
-│   ├── piece.py         # 棋子基类
-│   └── pieces.py        # 具体棋子实现
-├── rule/                # 规则模块
-│   ├── __init__.py
-│   └── rule.py          # 游戏规则实现
-└── main.py              # 游戏主程序
+├── ai/                 # AI相关模块
+│   ├── algorithms/     # 算法实现（MCTS、PPO等）
+│   ├── launchers/      # 训练启动器
+│   ├── networks/       # 神经网络模型
+│   ├── training/       # 训练相关文件
+│   └── utils/          # AI工具函数
+├── board/              # 棋盘实现
+├── config/             # 配置文件
+│   ├── config.py       # 网络和MCTS配置
+│   ├── train_config.py # 训练配置
+│   └── requirements_ai.txt # AI依赖
+├── core/               # 核心游戏逻辑
+├── docs/               # 文档
+│   ├── README.md       # 详细说明文档
+│   ├── README_USAGE.md # 使用指南
+│   └── AI_README.md    # AI相关文档
+├── logs/               # 日志文件
+├── piece/              # 棋子实现
+├── rule/               # 游戏规则
+├── scripts/            # 启动脚本
+│   ├── chess_gui.py    # GUI界面
+│   ├── human_vs_ai.py  # 人机对战
+│   ├── main.py         # 主程序
+│   ├── start_chess.py  # 游戏启动器
+│   └── start_training.py # 训练启动器
+├── test/               # 测试文件
+└── training_data/      # 训练数据
 ```
 
-## 功能特点
+## 快速开始
 
-- 完整实现中国象棋规则
-- 支持所有棋子的走法验证
-- 实现将军、将死和和棋判定
-- 命令行界面，简单易用
-- 模块化设计，代码结构清晰
-
-## 如何运行
-
-确保您已安装Python 3.6或更高版本，然后在项目根目录下运行：
+### 1. 安装依赖
 
 ```bash
-python chess/main.py
+pip install -r config/requirements_ai.txt
 ```
 
-## 游戏操作
+### 2. 启动游戏
 
-- 输入坐标格式为`x,y`，例如`0,0`表示左下角
-- 红方先行
-- 每回合需要输入起始位置和目标位置
-- 输入`q`可以退出游戏
-- 输入`c`可以取消当前选择
+```bash
+# 启动图形界面
+python scripts/chess_gui.py
 
-## 开发计划
+# 启动人机对战
+python scripts/human_vs_ai.py
 
-- [ ] 添加图形用户界面
-- [ ] 实现AI对战功能
-- [ ] 添加游戏存档和读取功能
-- [ ] 实现网络对战功能
+# 使用游戏启动器
+python scripts/start_chess.py
+```
+
+### 3. 训练AI
+
+```bash
+# 开始训练
+python scripts/start_training.py
+
+# 测试模式训练
+python scripts/start_training.py --test
+
+# 从检查点恢复训练
+python scripts/start_training.py --resume path/to/checkpoint
+```
+
+## 主要功能
+
+- **完整的中国象棋游戏引擎**：支持所有标准规则
+- **深度学习AI**：基于神经网络和MCTS的智能对手
+- **图形用户界面**：直观的游戏界面
+- **AI训练系统**：支持自我对弈训练
+- **多种游戏模式**：人人对战、人机对战、AI自对弈
+
+## 技术特性
+
+- 使用PyTorch实现深度学习模型
+- 蒙特卡洛树搜索(MCTS)算法
+- 近端策略优化(PPO)训练算法
+- 模块化设计，易于扩展
+- 完整的测试覆盖
+
+## 文档
+
+详细文档请查看 `docs/` 目录：
+- [详细说明](docs/README.md)
+- [使用指南](docs/README_USAGE.md)
+- [AI文档](docs/AI_README.md)
 
 ## 许可证
 
-MIT
+本项目采用开源许可证，具体信息请查看相关文档。

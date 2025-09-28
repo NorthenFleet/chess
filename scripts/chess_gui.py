@@ -16,8 +16,9 @@ from PyQt5.QtGui import QPainter, QPen, QBrush, QColor, QFont, QPixmap, QPalette
 
 # 添加项目根目录到路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from core.game_state import GameState, Player
 from board.board import Board, Position
@@ -26,7 +27,7 @@ from rule.rule import Rule, MoveResult
 from ai.networks.network import ChessNet, create_chess_net
 from ai.utils.encoder import BoardEncoder, ActionEncoder
 from ai.algorithms.mcts import MCTS
-from config import NetworkConfig, MCTSConfig
+from config.config import NetworkConfig, MCTSConfig
 
 
 class ChessBoardWidget(QWidget):

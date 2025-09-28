@@ -14,11 +14,12 @@ from datetime import datetime
 
 # 添加项目根目录到路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
-if current_dir not in sys.path:
-    sys.path.insert(0, current_dir)
+project_root = os.path.dirname(current_dir)
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from ai.launchers.trainer import ChessTrainer
-from train_config import (
+from config.train_config import (
     DEVICE, NETWORK_CONFIG, TRAINING_CONFIG, TRAINING_PHASES,
     LOGGING_CONFIG, PATH_CONFIG, get_current_phase_config,
     update_training_config_for_phase
