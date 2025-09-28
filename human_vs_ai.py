@@ -21,9 +21,9 @@ from core.game_state import GameState, Player
 from board.board import Board, Position
 from piece.piece import Piece, PieceType
 from rule.rule import Rule, MoveResult
-from ai.network import ChessNet, create_chess_net
-from ai.encoder import BoardEncoder, ActionEncoder
-from ai.mcts import MCTS
+from ai.networks.network import ChessNet, create_chess_net
+from ai.utils.encoder import BoardEncoder, ActionEncoder
+from ai.algorithms.mcts import MCTS
 from config import NetworkConfig, MCTSConfig
 
 

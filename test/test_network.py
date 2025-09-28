@@ -16,9 +16,9 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 if current_dir not in sys.path:
     sys.path.insert(0, current_dir)
 
-from ai.actor_critic_network import ActorCriticNetwork
-from ai.encoder import BoardEncoder, ActionEncoder
-from ai.mcts import MCTS
+from ai.networks.actor_critic_network import ActorCriticNetwork
+from ai.utils.encoder import BoardEncoder, ActionEncoder
+from ai.algorithms.mcts import MCTS
 from board.board import Board, Position
 from rule.rule import Rule
 from core.game_state import GameState

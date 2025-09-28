@@ -19,7 +19,7 @@ if project_root not in sys.path:
 
 from core.game_state import GameState
 from board.board import Position
-from .encoder import BoardEncoder, ActionEncoder
+from ai.utils.encoder import BoardEncoder, ActionEncoder
 
 
 @dataclass

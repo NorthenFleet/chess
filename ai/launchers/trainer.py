@@ -25,9 +25,9 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from core.game_state import GameState
-from ai.network import ChessNet, create_chess_net
-from ai.encoder import BoardEncoder, ActionEncoder
-from ai.mcts import MCTS
+from ai.networks.network import ChessNet, create_chess_net
+from ai.utils.encoder import BoardEncoder, ActionEncoder
+from ai.algorithms.mcts import MCTS
 
 
 @dataclass

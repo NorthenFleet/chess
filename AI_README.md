@@ -99,7 +99,7 @@ print(f"局面评估: {position_value:.3f}")
 
 #### 自定义训练
 ```python
-from ai.trainer import ChessTrainer
+from ai.launchers.trainer import ChessTrainer
 
 # 创建训练器
 trainer = ChessTrainer(
@@ -246,7 +246,7 @@ python ai/demo.py --mode ai_vs_ai --games 100
 ### Python脚本
 ```python
 # 创建和训练AI
-from ai.trainer import ChessTrainer
+from ai.launchers.trainer import ChessTrainer
 
 trainer = ChessTrainer()
 trainer.train(num_iterations=10)

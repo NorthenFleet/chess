@@ -469,3 +469,74 @@ AttributeError: 'str' object has no attribute 'side'
 2025-09-25 22:49:21,743 - INFO - 开始训练准备
 2025-09-25 22:49:22,608 - INFO - 开始训练 - 总迭代数: 200
 2025-09-25 22:49:22,608 - INFO - 开始 基础训练阶段 - 50 轮迭代
+2025-09-25 23:03:17,860 - ERROR - 训练错误: 'str' object has no attribute 'side'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 185, in main
+    train_with_phases(trainer, args.iterations, logger)
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 101, in train_with_phases
+    stats = trainer.train_iteration()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 352, in get_training_data
+    action_probs, root_value = self.search(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 225, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    winner = game_state.get_winner()
+  File "/Users/sunyi/WorkSpace/chess/core/game_state.py", line 176, in get_winner
+    return self.winner.side if self.winner else None
+AttributeError: 'str' object has no attribute 'side'
+2025-09-26 00:17:36,689 - INFO - 开始训练准备
+2025-09-26 00:17:37,657 - INFO - 开始训练 - 总迭代数: 200
+2025-09-26 00:17:37,657 - INFO - 开始 基础训练阶段 - 50 轮迭代
+2025-09-26 00:25:46,362 - ERROR - 训练错误: 'str' object has no attribute 'side'
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 185, in main
+    train_with_phases(trainer, args.iterations, logger)
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 101, in train_with_phases
+    stats = trainer.train_iteration()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 380, in train_iteration
+    new_examples = self.generate_self_play_data(
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 230, in generate_self_play_data
+    examples = self.self_play_game()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 171, in self_play_game
+    board_encoded, action_probs, _ = self.mcts.get_training_data(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 352, in get_training_data
+    action_probs, root_value = self.search(game_state)
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 225, in search
+    self._simulate()
+  File "/Users/sunyi/WorkSpace/chess/ai/mcts.py", line 264, in _simulate
+    winner = game_state.get_winner()
+  File "/Users/sunyi/WorkSpace/chess/core/game_state.py", line 176, in get_winner
+    return self.winner.side if self.winner else None
+AttributeError: 'str' object has no attribute 'side'
+2025-09-26 00:27:45,513 - INFO - 开始训练准备
+2025-09-26 00:27:45,960 - INFO - 开始训练 - 总迭代数: 5
+2025-09-26 00:27:45,961 - INFO - 开始 基础训练阶段 - 5 轮迭代
+2025-09-26 11:36:43,273 - ERROR - 训练错误: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.
+Traceback (most recent call last):
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 185, in main
+    train_with_phases(trainer, args.iterations, logger)
+  File "/Users/sunyi/WorkSpace/chess/start_training.py", line 101, in train_with_phases
+    stats = trainer.train_iteration()
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 389, in train_iteration
+    train_stats = self.train_network(training_examples)
+  File "/Users/sunyi/WorkSpace/chess/ai/trainer.py", line 275, in train_network
+    pred_policies, pred_values = self.network(batch_boards)
+  File "/Users/sunyi/miniconda3/envs/pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/sunyi/miniconda3/envs/pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 310, in forward
+    policy_logits = self.policy_head(out)
+  File "/Users/sunyi/miniconda3/envs/pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/sunyi/miniconda3/envs/pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/sunyi/WorkSpace/chess/ai/network.py", line 163, in forward
+    out = out.view(out.size(0), -1)
+RuntimeError: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces). Use .reshape(...) instead.

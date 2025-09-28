@@ -17,7 +17,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 if current_dir not in sys.path:
     sys.path.insert(0, current_dir)
 
-from ai.trainer import ChessTrainer
+from ai.launchers.trainer import ChessTrainer
 from train_config import (
     DEVICE, NETWORK_CONFIG, TRAINING_CONFIG, TRAINING_PHASES,
     LOGGING_CONFIG, PATH_CONFIG, get_current_phase_config,

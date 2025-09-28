@@ -148,7 +148,7 @@ class GameState:
             # 设置获胜者
             if result == MoveResult.CHECKMATE:
                 # 当前玩家获胜（因为对手被将死）
-                self.winner = self.current_player.side
+                self.winner = self.current_player
             else:
                 # 和棋
                 self.winner = None

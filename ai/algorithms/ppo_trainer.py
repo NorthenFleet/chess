@@ -12,7 +12,7 @@ from collections import deque
 import logging
 from dataclasses import dataclass
 
-from actor_critic_network import ActorCriticNetwork
+from ai.networks.actor_critic_network import ActorCriticNetwork
 
 
 @dataclass
@@ -439,7 +439,7 @@ def test_ppo_trainer():
     print("Testing PPO Trainer...")
     
     # 创建网络和训练器
-    from actor_critic_network import create_actor_critic_network
+    from ai.networks.actor_critic_network import create_actor_critic_network
     
     network = create_actor_critic_network()
     trainer = PPOTrainer(network)

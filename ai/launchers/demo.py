@@ -39,9 +39,9 @@ except ImportError:
 
 # 尝试导入AI模块
 try:
-    from ai.network import ChessNet
-    from ai.encoder import BoardEncoder, ActionEncoder
-    from ai.mcts import MCTS
+    from ai.networks.network import ChessNet
+    from ai.utils.encoder import BoardEncoder, ActionEncoder
+    from ai.algorithms.mcts import MCTS
     AI_MODULES_AVAILABLE = True
 except ImportError as e:
     print(f"警告: AI模块导入失败，将使用简化版本")
@@ -449,7 +449,7 @@ def train_ai(iterations: int = 10, checkpoint_dir: str = "checkpoints"):
     }
     
     try:
-        from ai.trainer import ChessTrainer
+        from ai.launchers.trainer import ChessTrainer
         trainer = ChessTrainer(
             network_config=network_config,
             training_config=training_config,

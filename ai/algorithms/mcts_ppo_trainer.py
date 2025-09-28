@@ -12,11 +12,11 @@ import time
 import os
 from collections import defaultdict
 
-from actor_critic_network import ActorCriticNetwork, create_actor_critic_network
-from ppo_trainer import PPOTrainer, PPOConfig, RolloutBuffer
-from mcts import MCTS
-from board import ChessBoard
-from encoder import ChessBoardEncoder
+from ai.networks.actor_critic_network import ActorCriticNetwork, create_actor_critic_network
+from ai.algorithms.ppo_trainer import PPOTrainer, PPOConfig, RolloutBuffer
+from core.game_state import GameState
+from board.board import ChessBoard
+from ai.utils.encoder import ChessBoardEncoder
 
 
 @dataclass
