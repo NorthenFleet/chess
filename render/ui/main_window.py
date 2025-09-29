@@ -383,8 +383,13 @@ class ChessMainWindow(QMainWindow):
     def on_piece_clicked(self, row, col):
         """棋子被点击"""
         piece = self.chess_board.get_piece_at_position(row, col)
-        if piece and piece.get('color') == self.current_player:
-            self.select_piece(row, col)
+        if piece:
+            if piece.get('color') == self.current_player:
+                # 点击己方棋子，选择该棋子
+                self.select_piece(row, col)
+            elif self.selected_piece:
+                # 点击对方棋子，如果已选择己方棋子，则尝试吃子
+                self.try_move(self.selected_piece, (row, col))
     
     def on_square_clicked(self, row, col):
         """棋盘格子被点击"""
@@ -424,7 +429,20 @@ class ChessMainWindow(QMainWindow):
         if self.game_status != 'playing':
             return
         
-        # 发送移动请求到游戏引擎
+        # 如果有游戏引擎，直接使用游戏引擎处理移动
+        if self.game_engine:
+            success = self.game_engine.make_move(from_pos, to_pos)
+            if success:
+                self.update_game_state()
+                self.add_move_to_history(from_pos, to_pos)
+                self.chess_board.clear_highlights()
+                self.selected_piece = None
+                self.status_bar.showMessage("移动成功", 1000)
+            else:
+                self.status_bar.showMessage("无效移动", 2000)
+            return
+        
+        # 发送移动请求到DSS接口
         move_data = {
             'from_pos': from_pos,
             'to_pos': to_pos,
